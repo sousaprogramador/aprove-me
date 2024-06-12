@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  bank:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=your_jwt_secret_key
+      - JWT_EXPIRES_IN=60s
+    volumes:
+      - .:/app
+      - db_data:/app/prisma
+
+volumes:
+  db_data:
