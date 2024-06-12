@@ -109,11 +109,9 @@ describe('PayablesController', () => {
 
   describe('remove', () => {
     it('should remove a payable', async () => {
-      const result = { deleted: true };
+      jest.spyOn(payablesService, 'delete').mockResolvedValue(null);
 
-      jest.spyOn(payablesService, 'delete').mockResolvedValueOnce(null);
-
-      expect(await controller.delete('1')).toBe(result);
+      expect(await controller.delete('1')).toBe(null);
       expect(payablesService.delete).toHaveBeenCalledWith('1');
     });
   });
